@@ -13,7 +13,7 @@ int main()
 	string alpha;
 	ifstream f_alpha("f_alpha.txt");
 	getline(f_alpha, alpha);
-	cout << DelDouble(UpCase(alpha)) << endl << alpha;//jkjkjk
+	cout << DelDouble(UpCase(alpha)) << endl << alpha;
 	return 0;
 }
 
