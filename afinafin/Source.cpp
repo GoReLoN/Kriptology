@@ -8,16 +8,44 @@ int gcd(int, int);
 string UpCase(string);
 string DelDouble(string);
 string Sort(string);
+int Search(string, char);
 
 int main()
 {
+	int a, b, m;
 	string alpha;
 	ifstream input("f_alpha.txt");
 	getline(input, alpha);
 	input.close();
-	ofstream output("f_alpha.txt");
-	output << Sort(DelDouble(UpCase(alpha)));
-	output.close();
+	alpha = Sort(DelDouble(UpCase(alpha)));
+	m = alpha.size();
+	cout << "Entry a, b: " << endl;
+	cin >> a >> b;
+	if (gcd(a, m) == 1)
+	{
+		cout << "alphavit size (m)= " << m << endl;
+		cout << "gcd(" << a << ", " << m << ")= " << gcd(a, m) << endl;
+		string delta = "", text;
+		for (int i = 0; i < m; ++i)
+		{
+			int key = (a * i + b) % m;
+			delta += alpha[key];
+		}
+		cout << delta << endl;
+		cout << "Entry text: ";
+		cin.ignore();
+		getline(cin, text);
+		text = UpCase(text);
+		for (int i = 0; i < text.size(); ++i)
+		{
+			int key = Search(alpha, text[i]);
+			if (key == -1)
+				text[i] = '*';
+			else
+				text[i] = delta[key];
+		}
+		cout << text;
+	}
 	return 0;
 }
 
@@ -65,4 +93,12 @@ string Sort(string str)
 			if (str[j] > str[j + 1])
 				swap(str[j], str[j + 1]);
 	return str;
+}
+
+int Search(string str, char chr)
+{
+	for (int i = 0; i < str.size(); ++i)
+		if (str[i] == chr)
+			return i;
+	return -1;
 }
