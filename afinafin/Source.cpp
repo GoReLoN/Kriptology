@@ -16,13 +16,13 @@ int main()
 	string alpha;
 	ifstream input("f_alpha.txt");
 	getline(input, alpha);
-	input.close();
 	alpha = Sort(DelDouble(UpCase(alpha)));
 	m = alpha.size();
 	cout << "Entry a, b: " << endl;
 	cin >> a >> b;
 	if (gcd(a, m) == 1)
 	{
+		int choice;
 		cout << "alphavit size (m)= " << m << endl;
 		cout << "gcd(" << a << ", " << m << ")= " << gcd(a, m) << endl;
 		string delta = "", text;
@@ -32,19 +32,44 @@ int main()
 			delta += alpha[key];
 		}
 		cout << delta << endl;
-		cout << "Entry text: ";
-		cin.ignore();
-		getline(cin, text);
-		text = UpCase(text);
-		for (int i = 0; i < text.size(); ++i)
+		cout << "Cript (1) or Decript (2) message?: ";
+		cin >> choice;
+		if (choice == 1)
 		{
-			int key = Search(alpha, text[i]);
-			if (key == -1)
-				text[i] = '*';
-			else
-				text[i] = delta[key];
+			input.close();
+			cout << "Entry text: ";
+			cin.ignore();
+			getline(cin, text);
+			text = UpCase(text);
+			for (int i = 0; i < text.size(); ++i)
+			{
+				int key = Search(alpha, text[i]);
+				if (key == -1)
+					text[i] = '*';
+				else
+					text[i] = delta[key];
+			}
+			ofstream output("f_alpha.txt");
+			output << alpha << endl;
+			output << text << endl;
+			output.close();
 		}
-		cout << text;
+		else if (choice == 2)
+		{
+			getline(input, text);
+			text = UpCase(text);
+			for (int i = 0; i < text.size(); ++i)
+			{
+				int key = Search(delta, text[i]);
+				if (key == -1)
+					text[i] = '*';
+				else
+					text[i] = alpha[key];
+			}
+			cout << text << endl;
+			input.close();
+		}
+		cout << "READY!";
 	}
 	return 0;
 }
