@@ -5,15 +5,19 @@
 using namespace std;
 
 int gcd(int, int);
-string& UpCase(string&);
-string& DelDouble(string&);
+string UpCase(string);
+string DelDouble(string);
+string Sort(string);
 
 int main()
 {
 	string alpha;
-	ifstream f_alpha("f_alpha.txt");
-	getline(f_alpha, alpha);
-	cout << DelDouble(UpCase(alpha)) << endl << alpha;//jkjkjk
+	ifstream input("f_alpha.txt");
+	getline(input, alpha);
+	input.close();
+	ofstream output("f_alpha.txt");
+	output << Sort(DelDouble(UpCase(alpha)));
+	output.close();
 	return 0;
 }
 
@@ -28,7 +32,7 @@ int gcd(int a, int b)
 	return (a + b);
 }
 
-string& UpCase(string& str)
+string UpCase(string str)
 {
 	for (int i = 0; i < str.size(); ++i)
 		if (str[i] >= 97 && str[i] < 123)
@@ -36,7 +40,7 @@ string& UpCase(string& str)
 	return str;
 }
 
-string& DelDouble(string& str)
+string DelDouble(string str)
 {
 	string result = "";
 	for (int i = 0; i < str.size(); ++i)
@@ -51,6 +55,14 @@ string& DelDouble(string& str)
 		if (!found)
 			result += str[i];
 	}
-	str = result;
+	return result;
+}
+
+string Sort(string str)
+{
+	for (int i = 0; i < str.size() - 1; ++i)
+		for (int j = 0; j < str.size() - 1 - i; ++j)
+			if (str[j] > str[j + 1])
+				swap(str[j], str[j + 1]);
 	return str;
 }
