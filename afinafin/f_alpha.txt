@@ -1,1 +1,1 @@
- ,.!?abcdefghijklmnopqstuvwxyz
+ !,.?ABCDEFGHIJKLMNOPQRSTUVWXYZ
