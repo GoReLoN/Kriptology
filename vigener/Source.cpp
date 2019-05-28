@@ -4,7 +4,6 @@
 
 using namespace std;
 
-int gcd(int, int);
 string UpCase(string);
 string DelDouble(string);
 string Sort(string);
@@ -15,24 +14,68 @@ int main()
 	string alpha;
 	ifstream input("file.txt");
 	getline(input, alpha);
-	input.close();
 	alpha = Sort(DelDouble(UpCase(alpha)));
-	cout << alpha;
-	ofstream output("file.txt");
-	output << alpha << endl;
-	output.close();
-	return 0;
-}
 
-int gcd(int a, int b)
-{
-	while (a != 0 && b != 0)
+	int choise;
+	string text, key, cripted="";
+	cout << "Entry key: ";
+	getline(cin, key);
+	key = UpCase(key);
+	cout << "Cript text (1) or Decript text (2)?: ";
+	cin >> choise;
+	if (choise == 1)
 	{
-		if (a < b)
-			swap(a, b);
-		a %= b;
+		input.close();
+		cout << "Entry text: ";
+		cin.ignore();
+		getline(cin, text);
+		text = UpCase(text);
+
+		for (int i = 0; i < text.size(); ++i)
+		{
+			int ctext = Search(alpha, text[i]);
+			int ckey = Search(alpha, key[i % key.size()]);
+			int c = (ctext + ckey) % alpha.size();
+			cout << c << " ";
+			if (ctext == -1 || ckey == -1)
+				cripted += '*';
+			else
+				cripted += alpha[c];
+		}
+
+		ofstream output("file.txt");
+		output << alpha << endl;
+		output << cripted << endl;
+		output.close();
 	}
-	return (a + b);
+	else
+	{
+		string cripted, text="";
+		getline(input, cripted);
+		input.close();
+		cripted = UpCase(cripted);
+
+		for (int i = 0; i < cripted.size(); ++i)
+		{
+			int ccript = Search(alpha, cripted[i]);
+			int ckey = Search(alpha, key[i % key.size()]);
+			int c = (ccript - ckey) % alpha.size();
+			cout << c << " ";
+			if (ccript == -1 || ckey == -1)
+				text += '*';
+			else
+				text += alpha[c];
+		}
+
+		cout << endl << text << endl;
+		ofstream output("file.txt");
+		output << alpha << endl;
+		output << cripted << endl;
+		output.close();
+	}
+	
+	cout << "READY!" << endl;
+	return 0;
 }
 
 string UpCase(string str)
