@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.28917.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "afinafin", "afinafin\afinafin.vcxproj", "{7912EEDC-214A-4151-B88C-6323B02B128F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vigener", "vigener\vigener.vcxproj", "{1185BF73-9972-4E80-ADAB-DEC05C210F46}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{7912EEDC-214A-4151-B88C-6323B02B128F}.Release|x64.Build.0 = Release|x64
 		{7912EEDC-214A-4151-B88C-6323B02B128F}.Release|x86.ActiveCfg = Release|Win32
 		{7912EEDC-214A-4151-B88C-6323B02B128F}.Release|x86.Build.0 = Release|Win32
+		{1185BF73-9972-4E80-ADAB-DEC05C210F46}.Debug|x64.ActiveCfg = Debug|x64
+		{1185BF73-9972-4E80-ADAB-DEC05C210F46}.Debug|x64.Build.0 = Debug|x64
+		{1185BF73-9972-4E80-ADAB-DEC05C210F46}.Debug|x86.ActiveCfg = Debug|Win32
+		{1185BF73-9972-4E80-ADAB-DEC05C210F46}.Debug|x86.Build.0 = Debug|Win32
+		{1185BF73-9972-4E80-ADAB-DEC05C210F46}.Release|x64.ActiveCfg = Release|x64
+		{1185BF73-9972-4E80-ADAB-DEC05C210F46}.Release|x64.Build.0 = Release|x64
+		{1185BF73-9972-4E80-ADAB-DEC05C210F46}.Release|x86.ActiveCfg = Release|Win32
+		{1185BF73-9972-4E80-ADAB-DEC05C210F46}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
