@@ -4,28 +4,35 @@
 
 using namespace std;
 
-string UpCase(string);
-string DelDouble(string);
-string Sort(string);
-int Search(string, char);
+string UpCase(string); // преобразует символы в верхний регистр
+string DelDouble(string); // удал€ет повтор€ющийс€ символы в строке
+string Sort(string); // сортирует строку
+int Search(string, char); // возвращает индекс искомого символа в строке
 
 int main()
-{
-	string alpha;
+{ 
+	string alpha; // алфвавит
 	ifstream input("file.txt");
 	getline(input, alpha);
-	alpha = Sort(DelDouble(UpCase(alpha)));
-
-	int choise;
-	string text, key, cripted="";
+	alpha = Sort(DelDouble(UpCase(alpha))); 
+	cout << "Alpha= [" << alpha << "]\n";
+	
+	string key, text = "", cripted = "";
 	cout << "Entry key: ";
 	getline(cin, key);
 	key = UpCase(key);
+	int len = Search(key, ' ');
+	if (len != -1)
+		key.resize(len);
+	cout << "key= " << key << endl;
+	int choise;
 	cout << "Cript text (1) or Decript text (2)?: ";
 	cin >> choise;
 	if (choise == 1)
 	{
 		input.close();
+		
+		string text;
 		cout << "Entry text: ";
 		cin.ignore();
 		getline(cin, text);
@@ -35,14 +42,16 @@ int main()
 		{
 			int ctext = Search(alpha, text[i]);
 			int ckey = Search(alpha, key[i % key.size()]);
-			int c = (ctext + ckey) % alpha.size();
-			cout << c << " ";
+			int c = (ctext + ckey);
+			if (c >= alpha.size())
+				c -= alpha.size();
 			if (ctext == -1 || ckey == -1)
 				cripted += '*';
 			else
 				cripted += alpha[c];
 		}
 
+		cout << "Cripted= " << cripted << endl;
 		ofstream output("file.txt");
 		output << alpha << endl;
 		output << cripted << endl;
@@ -50,24 +59,25 @@ int main()
 	}
 	else
 	{
-		string cripted, text="";
 		getline(input, cripted);
 		input.close();
 		cripted = UpCase(cripted);
-
+		cout << "Cripted= " << cripted << endl;
+		
 		for (int i = 0; i < cripted.size(); ++i)
 		{
 			int ccript = Search(alpha, cripted[i]);
 			int ckey = Search(alpha, key[i % key.size()]);
-			int c = (ccript - ckey) % alpha.size();
-			cout << c << " ";
+			int c = (ccript - ckey);
+			if (c < 0)
+				c += alpha.size();
 			if (ccript == -1 || ckey == -1)
 				text += '*';
 			else
 				text += alpha[c];
 		}
 
-		cout << endl << text << endl;
+		cout << "Text= " << text << endl;
 		ofstream output("file.txt");
 		output << alpha << endl;
 		output << cripted << endl;
