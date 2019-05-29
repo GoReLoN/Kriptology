@@ -4,11 +4,11 @@
 
 using namespace std;
 
-int gcd(int, int);
-string UpCase(string);
-string DelDouble(string);
-string Sort(string);
-int Search(string, char);
+int gcd(int, int); // возвращает НОД двух чисел
+string UpCase(string); // возвращает строку с символами верхнего регистра
+string DelDouble(string); // возвращает строку, в которой удалены повторяющееся символы
+string Sort(string); // возвращает отсортированную строку по нумерации АСКИИ от меньшего к большему (алгоритм пузырьком)
+int Search(string, char); // возвращает индекс символа в строке, если символ не найден возвращает -1
 
 int main()
 {
